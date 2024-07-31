@@ -1,5 +1,5 @@
-ARG BASE_IMAGE_REPO=fedora
-ARG BASE_IMAGE_TAG=40
+ARG BASE_IMAGE_REPO=alpine
+ARG BASE_IMAGE_TAG=3.20
 
 FROM ${BASE_IMAGE_REPO}:${BASE_IMAGE_TAG} AS base
 
@@ -8,20 +8,36 @@ ENV LC_ALL=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
 
 RUN set -eux; \
-    echo "tsflags=nodocs" >> /etc/dnf/dnf.conf; \
-    dnf groupinstall -y "Development Tools" "Development Libraries";\
-    dnf install -y \
-        glibc-locale-source \
-        ca-certificates \
+    echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories; \
+    apk add --no-cache \
+        shadow \
+        bash \
         curl \
         git \
         patch \
         perl \
-        systemtap-sdt-devel \
-        clang; \
-    localedef -i en_US -f UTF-8 en_US.UTF-8; \
-    dnf clean all; \
-  	rm -rf /var/cache/*; \
+        gcc \
+        make \
+        clang \
+        autoconf \
+        libstdc++ \
+        libffi-dev \
+        gmp-dev \
+        openssl-dev \
+        yaml-dev \        
+        zlib-dev; \
+    \
+    curl -L -o /etc/apk/keys/sgerrand.rsa.pub https://github.com/sgerrand/alpine-pkg-glibc/releases/download/sgerrand.rsa.pub; \
+    curl -L -o glibc-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-2.34-r0.apk; \
+    curl -L -o glibc-bin-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-bin-2.34-r0.apk; \
+    curl -L -o glibc-i18n-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-i18n-2.34-r0.apk; \
+    apk add --force-overwrite --allow-untrusted \
+        glibc-2.34-r0.apk \
+        glibc-bin-2.34-r0.apk \
+        glibc-i18n-2.34-r0.apk; \
+    rm *.apk; \
+    \
+    /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8; \
     \
     useradd -m -s /bin/bash linuxbrew
 
