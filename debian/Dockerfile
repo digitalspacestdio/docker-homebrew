@@ -137,9 +137,12 @@ RUN set -eux; \
     # A small patch that allows to compile the necessary tools from source
     patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff);
 
-# Install brew base packages
+# Install homebrew curl
 RUN brew install curl; \
-    # Install fastfetch
-    brew install fastfetch; \
     # Remove cache
-    rm -rf /home/linuxbrew/.cache/*      
+    rm -rf /home/linuxbrew/.cache/*;
+
+# Install homebrew fastfetch
+RUN brew install fastfetch; \
+    # Remove cache
+    rm -rf /home/linuxbrew/.cache/*;
