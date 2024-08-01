@@ -68,7 +68,7 @@ RUN set -eux; \
     autoconf; \
     arch="$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"; \
     ./configure \
-        --prefix="/opt/ruby" \
+        --prefix="/opt/ruby/${RUBY_VERSION}" \
         --build="$arch" \
         --disable-install-doc \
         --enable-shared; \
@@ -78,7 +78,7 @@ RUN set -eux; \
 
 FROM base
 
-COPY --from=ruby /opt/ruby/ /opt/ruby/
+ARG RUBY_VERSION="3.3.3"
 
 # Configure ruby env
 ENV GEM_HOME=/usr/local/bundle \
@@ -87,8 +87,9 @@ ENV GEM_HOME=/usr/local/bundle \
 ENV BUNDLE_APP_CONFIG="$GEM_HOME" \
     PATH=$GEM_HOME/bin:$PATH
 
+COPY --from=ruby "/opt/ruby/${RUBY_VERSION}" "/opt/ruby/${RUBY_VERSION}"
 
-RUN ln -s /opt/ruby/bin/* /usr/local/bin/;
+RUN ln -s /opt/ruby/${RUBY_VERSION}/bin/* /usr/local/bin/;
 
 # adjust permissions of a few directories for running "gem install" as an arbitrary user
 RUN mkdir -p "$GEM_HOME" && chmod 0777 "$GEM_HOME"; \
