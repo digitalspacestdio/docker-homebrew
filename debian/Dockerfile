@@ -139,11 +139,13 @@ RUN set -eux; \
     patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff);
 
 # Install homebrew curl
-RUN brew install curl; \
+RUN set -eux; \
+    brew install curl; \
     # Remove cache
     rm -rf /home/linuxbrew/.cache/*;
 
 # Install homebrew fastfetch
-RUN brew install fastfetch; \
+RUN set -eux; \
+    brew install fastfetch; \
     # Remove cache
     rm -rf /home/linuxbrew/.cache/*;
