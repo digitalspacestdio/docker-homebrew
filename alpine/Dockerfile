@@ -146,9 +146,3 @@ RUN set -eux; \
     brew install curl; \
     # Remove cache
     rm -rf /home/linuxbrew/.cache/*;
-
-# Install homebrew fastfetch
-RUN set -eux; \
-    brew install fastfetch; \
-    # Remove cache
-    rm -rf /home/linuxbrew/.cache/*;
