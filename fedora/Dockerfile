@@ -123,6 +123,8 @@ RUN set -eux; \
     cd /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core; \
     patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff); \
     \
+    # Install curl
+    brew install curl; \
     # Install fastfetch
     brew install fastfetch; \
     # Remove cache
