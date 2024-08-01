@@ -121,10 +121,11 @@ RUN set -eux; \
     # Install homebrew core tap with patches
     git clone --depth=1 https://github.com/homebrew/homebrew-core.git /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core; \
     cd /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core; \
-    patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff); \
-    \
-    # Install curl
-    brew install curl; \
+    # A small patch that allows to compile the necessary tools from source
+    patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff);
+
+# Install brew base packages
+RUN brew install curl; \
     # Install fastfetch
     brew install fastfetch; \
     # Remove cache
