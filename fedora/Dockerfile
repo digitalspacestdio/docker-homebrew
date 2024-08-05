@@ -18,6 +18,7 @@ RUN set -eux; \
         patch \
         perl \
         systemtap-sdt-devel \
+        bzip2 \
         clang; \
     localedef -i en_US -f UTF-8 en_US.UTF-8; \
     dnf clean all; \
@@ -47,7 +48,7 @@ RUN set -eux; \
         echo; \
         cat file.c; \
     } > file.c.new; \
-    mv file.c.new file.c; \
+    mv -f file.c.new file.c; \
     \
     autoconf; \
     arch="$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"; \

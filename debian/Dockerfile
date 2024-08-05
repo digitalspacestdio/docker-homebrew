@@ -19,6 +19,7 @@ RUN set -eux; \
         curl \
         git \
         patch \
+        bzip2 \
         perl \
         systemtap-sdt-dev \
         build-essential \

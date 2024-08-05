@@ -15,6 +15,7 @@ RUN set -eux; \
         curl \
         git \
         patch \
+        bzip2 \
         perl \
         gcc \
         make \
