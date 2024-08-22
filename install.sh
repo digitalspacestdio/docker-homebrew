@@ -28,7 +28,7 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
 [ -f "${BREW_BIN}" ] && {
     if [ -f "$HOME/.zprofile" ]; then 
         grep 'eval "$('${BREW_BIN}' shellenv)"' "$HOME/.zprofile" || {
-            echo 'eval "$('${BREW_BIN}' shellenv)"') | tee -a $HOME/.zprofile
+            echo 'eval "$('${BREW_BIN}' shellenv)"' | tee -a $HOME/.zprofile
         }
 
         if echo $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]') | grep aarch64; then
@@ -41,9 +41,9 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
 
     if [ -f "$HOME/.bashrc" ]; then 
         grep 'eval "$('${BREW_BIN}' shellenv)"' "$HOME/.bashrc" || {
-            echo 'eval "$('${BREW_BIN}' shellenv)"') | tee -a $HOME/.bashrc
+            echo 'eval "$('${BREW_BIN}' shellenv)"' | tee -a $HOME/.bashrc
         }
-        
+
         if echo $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]') | grep aarch64; then
             mkdir -p ${HOMEBREW_PREFIX}'/.tmp'
             grep 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' "$HOME/.bashrc" || {
