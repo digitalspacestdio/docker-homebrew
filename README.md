@@ -39,12 +39,5 @@ docker build \
 
 ## Local Machine
 ```bash
-# Install Requirements
-curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-requirements.sh | sudo sh
-
-# Install Ruby
-curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-ruby.sh | sudo sh
-
-# Install Homebrew
-curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-homebrew.sh | sudo sh
+curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install.sh | sh
 ```

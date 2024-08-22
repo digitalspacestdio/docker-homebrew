@@ -1,5 +1,7 @@
 #!/bin/sh
-set -eux
+set -eux;
+cd /tmp;
+
 . /etc/os-release
 DISTRO=${ID_LIKE:-$ID}
 if [ "debian" == $DISTRO ]; then

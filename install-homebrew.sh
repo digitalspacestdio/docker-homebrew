@@ -1,9 +1,11 @@
 #!/bin/sh
+set -eux;
+cd /tmp;
+
 HOMEBREW_BREW_GIT_REMOTE=${HOMEBREW_BREW_GIT_REMOTE:-"https://github.com/Homebrew/brew"}
 HOMEBREW_BREW_GIT_REF=${HOMEBREW_BREW_GIT_REF:-$(curl -s https://api.github.com/repos/$(echo ${HOMEBREW_BREW_GIT_REMOTE} | awk -F/ '{ print $4"/"$5}')/tags | grep '"name":' | awk -F '"' '{print $4}' | head -n 1)}
-HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/home/linuxbrew/.linuxbrew"}
 
-set -eux; \
 git clone --branch ${HOMEBREW_BREW_GIT_REF} --single-branch --depth 1 ${HOMEBREW_BREW_GIT_REMOTE} ${HOMEBREW_PREFIX}/Homebrew; \
 mkdir -p \
     ${HOMEBREW_PREFIX}/etc \
