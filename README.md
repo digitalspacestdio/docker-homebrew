@@ -1,16 +1,37 @@
 # Homebrew docker images
-## Build
+## Build for the latest Homebrew release 
 Fedora
 ```bash
-docker build --build-arg HOMEBREW_BREW_GIT_REF="4.3.12" -t homebrew:fedora -f fedora/Dockerfile ./fedora
+GIT_REMOTE="https://github.com/Homebrew/brew"
+GIT_REF=$(curl -s https://api.github.com/repos/Homebrew/brew/tags | grep '"name":' | awk -F '"' '{print $4}' | head -n 1)
+
+docker build \
+--build-arg HOMEBREW_BREW_GIT_REMOTE="${GIT_REMOTE}" \
+--build-arg HOMEBREW_BREW_GIT_REF="${GIT_REF}" \
+-t homebrew:${GIT_REF}-fedora \
+-f fedora/Dockerfile .
 ```
 
 Debian
 ```bash
-docker build --build-arg HOMEBREW_BREW_GIT_REF="4.3.12" -t homebrew:debian -f debian/Dockerfile ./debian
+GIT_REMOTE="https://github.com/Homebrew/brew"
+GIT_REF=$(curl -s https://api.github.com/repos/Homebrew/brew/tags | grep '"name":' | awk -F '"' '{print $4}' | head -n 1)
+
+docker build \
+--build-arg HOMEBREW_BREW_GIT_REMOTE="${GIT_REMOTE}" \
+--build-arg HOMEBREW_BREW_GIT_REF="${GIT_REF}" \
+-t homebrew:${GIT_REF}-debian \
+-f debian/Dockerfile .
 ```
 
 Alpine
 ```bash
-docker build --build-arg HOMEBREW_BREW_GIT_REF="4.3.12" -t homebrew:alpine -f alpine/Dockerfile ./alpine
+GIT_REMOTE="https://github.com/Homebrew/brew"
+GIT_REF=$(curl -s https://api.github.com/repos/Homebrew/brew/tags | grep '"name":' | awk -F '"' '{print $4}' | head -n 1)
+
+docker build \
+--build-arg HOMEBREW_BREW_GIT_REMOTE="${GIT_REMOTE}" \
+--build-arg HOMEBREW_BREW_GIT_REF="${GIT_REF}" \
+-t homebrew:${GIT_REF}-alpine \
+-f alpine/Dockerfile .
 ```
