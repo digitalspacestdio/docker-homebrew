@@ -33,5 +33,5 @@ RUBY_VERSION=${RUBY_VERSION:-"3.3.3"}
     \
     make -j "$(nproc)"; \
     make install; \
-} \
+}; \
 ln -s -f /opt/ruby/${RUBY_VERSION}/bin/* /usr/local/bin/;
