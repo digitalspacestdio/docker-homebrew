@@ -26,15 +26,29 @@ sudo chown -R ${USER} ${HOMEBREW_PREFIX}
 BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
 
 [ -f "${BREW_BIN}" ] && {
-    [ -f "$HOME/.zprofile" ] && {
+    if [ -f "$HOME/.zprofile" ]; then 
         grep 'eval "$('${BREW_BIN}' shellenv)"' "$HOME/.zprofile" || {
             echo 'eval "$('${BREW_BIN}' shellenv)"') | tee -a $HOME/.zprofile
         }
-    }
 
-    [ -f "$HOME/.bashrc" ] && {
+        if echo $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]') | grep aarch64; then
+            mkdir -p ${HOMEBREW_PREFIX}'/.tmp'
+            grep 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' "$HOME/.zprofile" || {
+                echo 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' | tee -a $HOME/.zprofile
+            }
+        fi
+    fi
+
+    if [ -f "$HOME/.bashrc" ]; then 
         grep 'eval "$('${BREW_BIN}' shellenv)"' "$HOME/.bashrc" || {
             echo 'eval "$('${BREW_BIN}' shellenv)"') | tee -a $HOME/.bashrc
         }
-    }
+        
+        if echo $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]') | grep aarch64; then
+            mkdir -p ${HOMEBREW_PREFIX}'/.tmp'
+            grep 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' "$HOME/.bashrc" || {
+                echo 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' | tee -a $HOME/.bashrc
+            }
+        fi
+    fi
 }
