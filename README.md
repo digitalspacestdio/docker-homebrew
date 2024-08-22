@@ -1,5 +1,6 @@
 # Homebrew docker images
-## Build for the latest Homebrew release 
+Docker
+### Build for the latest Homebrew release 
 Fedora
 ```bash
 GIT_REMOTE="https://github.com/Homebrew/brew"
@@ -34,4 +35,16 @@ docker build \
 --build-arg HOMEBREW_BREW_GIT_REF="${GIT_REF}" \
 -t homebrew:${GIT_REF}-alpine \
 -f alpine/Dockerfile .
+```
+
+## Local Machine
+```bash
+# Install Requirements
+curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-requirements.sh | sudo sh
+
+# Install Ruby
+curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-ruby.sh | sudo sh
+
+# Install Homebrew
+curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-homebrew.sh | sudo sh
 ```
