@@ -7,19 +7,13 @@ ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
 
+COPY --chmod=0755 install-requirements.sh /install-requirements.sh
+
 RUN set -eux; \
     echo "tsflags=nodocs" >> /etc/dnf/dnf.conf; \
-    dnf groupinstall -y "Development Tools" "Development Libraries";\
-    dnf install -y \
-        glibc-locale-source \
-        ca-certificates \
-        curl \
-        git \
-        patch \
-        perl \
-        systemtap-sdt-devel \
-        bzip2 \
-        clang; \
+    \
+    /install-requirements.sh; \
+    \
     localedef -i en_US -f UTF-8 en_US.UTF-8; \
     dnf clean all; \
   	rm -rf /var/cache/*;

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 RUBY_MAJOR=${RUBY_MAJOR:-"3.3"}
 RUBY_VERSION=${RUBY_VERSION:-"3.3.3"}
 #RUBY_DOWNLOAD_SHA256=${RUBY_DOWNLOAD_SHA256:-"83c0995388399c9555bad87e70af069755b5a9d84bbaa74aa22d1e37ff70fc1e"}
@@ -31,4 +31,4 @@ arch="$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"; \
 \
 make -j "$(nproc)"; \
 make install; \
-ln -s -f /opt/ruby/${RUBY_VERSION}/bin/* /usr/local/bin/;\
+ln -s -f /opt/ruby/${RUBY_VERSION}/bin/* /usr/local/bin/;

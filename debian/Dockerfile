@@ -10,26 +10,12 @@ ENV LC_ALL=en_US.UTF-8 \
 
 COPY debian/01_nodoc /etc/dpkg/dpkg.conf.d/01_nodoc
 COPY debian/ftp.debian.org.list /etc/apt/sources.list.d/ftp.debian.org.list 
+COPY --chmod=0755 install-requirements.sh /install-requirements.sh
 
 RUN set -eux; \
-    apt update;\
-    apt install -yqq \
-        locales \
-        ca-certificates \
-        curl \
-        git \
-        patch \
-        bzip2 \
-        perl \
-        systemtap-sdt-dev \
-        build-essential \
-        clang \
-        autoconf \
-        libffi-dev \
-        libgmp-dev \
-        libssl-dev \
-        libyaml-dev \        
-        zlib1g-dev; \
+    \
+    /install-requirements.sh; \
+    \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen; \
     dpkg-reconfigure locales; \
     update-locale LANG=en_US.UTF-8; \

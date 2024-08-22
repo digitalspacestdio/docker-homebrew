@@ -7,36 +7,11 @@ ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
 
+COPY --chmod=0755 install-requirements.sh /install-requirements.sh
+
 RUN set -eux; \
-    echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories; \
-    apk add --no-cache \
-        shadow \
-        bash \
-        curl \
-        git \
-        patch \
-        bzip2 \
-        perl \
-        gcc \
-        make \
-        clang \
-        autoconf \
-        libstdc++ \
-        libffi-dev \
-        gmp-dev \
-        openssl-dev \
-        yaml-dev \        
-        zlib-dev; \
-    \
-    curl -L -o /etc/apk/keys/sgerrand.rsa.pub https://github.com/sgerrand/alpine-pkg-glibc/releases/download/sgerrand.rsa.pub; \
-    curl -L -o glibc-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-2.34-r0.apk; \
-    curl -L -o glibc-bin-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-bin-2.34-r0.apk; \
-    curl -L -o glibc-i18n-2.34-r0.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-i18n-2.34-r0.apk; \
-    apk add --force-overwrite --allow-untrusted \
-        glibc-2.34-r0.apk \
-        glibc-bin-2.34-r0.apk \
-        glibc-i18n-2.34-r0.apk; \
-    rm *.apk; \
+    \   
+    /install-requirements.sh; \
     \
     /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8;
 
