@@ -37,6 +37,22 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
                 echo 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' | tee -a $HOME/.zprofile
             }
         fi
+
+        grep 'export HOMEBREW_NO_INSTALL_FROM_API=1' "$HOME/.zprofile" || {
+            echo 'export HOMEBREW_NO_INSTALL_FROM_API=1' | tee -a $HOME/.zprofile
+        }
+
+        grep 'export HOMEBREW_NO_ENV_HINTS=1' "$HOME/.zprofile" || {
+            echo 'export HOMEBREW_NO_ENV_HINTS=1' | tee -a $HOME/.zprofile
+        }
+
+        grep 'export HOMEBREW_NO_AUTO_UPDATE=1' "$HOME/.zprofile" || {
+            echo 'export HOMEBREW_NO_AUTO_UPDATE=1' | tee -a $HOME/.zprofile
+        }
+
+        grep 'export HOMEBREW_DEVELOPER=1' "$HOME/.zprofile" || {
+            echo 'export HOMEBREW_DEVELOPER=1' | tee -a $HOME/.zprofile
+        }
     fi
 
     if [ -f "$HOME/.bashrc" ]; then 
@@ -50,5 +66,21 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
                 echo 'export HOMEBREW_TEMP='${HOMEBREW_PREFIX}'/.tmp' | tee -a $HOME/.bashrc
             }
         fi
+
+        grep 'export HOMEBREW_NO_INSTALL_FROM_API=1' "$HOME/.bashrc" || {
+            echo 'export HOMEBREW_NO_INSTALL_FROM_API=1' | tee -a $HOME/.bashrc
+        }
+
+        grep 'export HOMEBREW_NO_ENV_HINTS=1' "$HOME/.bashrc" || {
+            echo 'export HOMEBREW_NO_ENV_HINTS=1' | tee -a $HOME/.bashrc
+        }
+
+        grep 'export HOMEBREW_NO_AUTO_UPDATE=1' "$HOME/.bashrc" || {
+            echo 'export HOMEBREW_NO_AUTO_UPDATE=1' | tee -a $HOME/.bashrc
+        }
+
+        grep 'export HOMEBREW_DEVELOPER=1' "$HOME/.bashrc" || {
+            echo 'export HOMEBREW_DEVELOPER=1' | tee -a $HOME/.bashrc
+        }
     fi
 }
