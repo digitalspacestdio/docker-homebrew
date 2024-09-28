@@ -21,7 +21,7 @@ curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main
 # Install Homebrew
 curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install-homebrew.sh | sudo sh
 
-sudo chown -R ${USER} ${HOMEBREW_PREFIX}
+sudo chown -R $(id -u):$(id -g) ${HOMEBREW_PREFIX}
 
 BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
 
