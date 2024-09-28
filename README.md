@@ -1,6 +1,14 @@
-# Homebrew docker images
-Docker
-### Build for the latest Homebrew release 
+# Homebrew docker and local install scripts for `x86_64` and `arm64` linux hosts
+
+## Local Machine
+```bash
+curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install.sh | sh
+```
+```bash
+exec $SHELL
+```
+
+### Docker
 Fedora
 ```bash
 GIT_REMOTE="https://github.com/Homebrew/brew"
@@ -35,12 +43,4 @@ docker build \
 --build-arg HOMEBREW_BREW_GIT_REF="${GIT_REF}" \
 -t homebrew:${GIT_REF}-alpine \
 -f alpine/Dockerfile .
-```
-
-## Local Machine
-```bash
-curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install.sh | sh
-```
-```bash
-exec $SHELL
 ```
