@@ -27,5 +27,5 @@ ln -s -f ../Homebrew/bin/brew ${HOMEBREW_PREFIX}/bin/;
     git clone --depth=1 https://github.com/homebrew/homebrew-core.git ${HOMEBREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-core;
     cd ${HOMEBREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-core;
     # A small patch that allows to compile the necessary tools from source
-    patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff);
+    /bin/sh -c 'patch -p1 < <(curl -sL https://github.com/digitalspacestdio/homebrew-core/compare/master...aarch64.diff)';
 }
