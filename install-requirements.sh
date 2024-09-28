@@ -4,7 +4,7 @@ cd /tmp;
 
 . /etc/os-release
 DISTRO=${ID_LIKE:-$ID}
-if [ "debian" == $DISTRO ]; then
+if [ "debian" = "${DISTRO}" ]; then
     apt update;
     apt install -yqq \
         locales \
@@ -23,7 +23,7 @@ if [ "debian" == $DISTRO ]; then
         libssl-dev \
         libyaml-dev \
         zlib1g-dev;
-elif [ "fedora" == $DISTRO ]; then
+elif [ "fedora" = "${DISTRO}" ]; then
     dnf groupinstall -y "Development Tools" "Development Libraries";\
     dnf install -y \
         glibc-locale-source \
@@ -35,7 +35,7 @@ elif [ "fedora" == $DISTRO ]; then
         systemtap-sdt-devel \
         bzip2 \
         clang;
-elif [ "alpine" == $DISTRO ]; then
+elif [ "alpine" = "${DISTRO}" ]; then
     echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories; \
     apk add --no-cache \
         shadow \
@@ -66,6 +66,6 @@ elif [ "alpine" == $DISTRO ]; then
         glibc-i18n-2.34-r0.apk; \
     rm *.apk;
 else
-    echo "Unsupported distro: $DISTRO"
+    echo "Unsupported distro: ${DISTRO}"
     exit 1
 fi
