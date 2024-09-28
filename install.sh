@@ -83,6 +83,4 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
             echo 'export HOMEBREW_DEVELOPER=1' | tee -a $HOME/.bashrc
         }
     fi
-
-    eval "$('${BREW_BIN}' shellenv)"
 }
