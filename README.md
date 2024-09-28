@@ -41,3 +41,6 @@ docker build \
 ```bash
 curl -s https://raw.githubusercontent.com/digitalspacestdio/docker-homebrew/main/install.sh | sh
 ```
+```bash
+exec $SHELL
+```
