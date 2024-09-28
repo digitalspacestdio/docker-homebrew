@@ -84,5 +84,5 @@ BREW_BIN=${HOMEBREW_PREFIX}/bin/brew
         }
     fi
 
-    eval "$('${BREW_BIN}' shellenv)
+    eval "$('${BREW_BIN}' shellenv)"
 }
