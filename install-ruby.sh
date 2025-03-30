@@ -2,14 +2,16 @@
 set -eux;
 cd /tmp;
 
-RUBY_MAJOR=${RUBY_MAJOR:-"3.3"}
-RUBY_VERSION=${RUBY_VERSION:-"3.3.7"}
+RUBY_MAJOR=${RUBY_MAJOR:-"3.1"}
+RUBY_VERSION=${RUBY_VERSION:-"3.1.4"}
 #RUBY_DOWNLOAD_SHA256=${RUBY_DOWNLOAD_SHA256:-"83c0995388399c9555bad87e70af069755b5a9d84bbaa74aa22d1e37ff70fc1e"}
 
 [ -d /opt/ruby/${RUBY_VERSION} ] || { \
+    rm -rf ruby.tar.xz; \
     curl -o ruby.tar.xz "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.xz"; \
     #echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz" | sha256sum -c -; \
     \
+    rm -rf /usr/src/ruby; \
     mkdir -p /usr/src/ruby; \
     tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1; \
     cd /usr/src/ruby; \
